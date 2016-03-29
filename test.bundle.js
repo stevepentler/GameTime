@@ -83,8 +83,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/Users/StevePentler/4projects/GameTime/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/StevePentler/4projects/GameTime/node_modules/mocha/mocha.css", function() {
-			var newContent = require("!!/Users/StevePentler/4projects/GameTime/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/StevePentler/4projects/GameTime/node_modules/mocha/mocha.css");
+		module.hot.accept("!!/Users/davidstinnette/Turing/4module/GAMETIME/GameTime/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/davidstinnette/Turing/4module/GAMETIME/GameTime/node_modules/mocha/mocha.css", function() {
+			var newContent = require("!!/Users/davidstinnette/Turing/4module/GAMETIME/GameTime/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/davidstinnette/Turing/4module/GAMETIME/GameTime/node_modules/mocha/mocha.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
