@@ -1,9 +1,7 @@
-#game {
-  width: 1000px;
-  height: 600px;
-  background-color: blue;
+canvas {
+  background-color: lightblue;
 }
 
-.dave {
-  background-color: black;
-}
+
+
+
