@@ -4,8 +4,9 @@ const assert = chai.assert;
 const Fish = require('../lib/fish');
 
 describe('Fish', function() {
+  var fish = new Fish({});
+
   context('with default attributes', function() {
-    var fish = new Fish({});
 
     it ('should assign a x default coordinate', function() {
       assert.equal(fish.x, 0);
@@ -35,6 +36,45 @@ describe('Fish', function() {
       assert.equal(customFish.width, 3);
       assert.equal(customFish.height, 4);
       assert.equal(customFish.velocity, 5);
+    });
+  })
+
+  context('moves horizontally', function() {
+    var initialPosition = fish.x;
+    var defaultVelocity = fish.velocity;
+
+    it ('should move', function() {
+      assert.equal(fish.x, fish.x);
+
+      fish.move(fish);
+      assert.equal(fish.x, initialPosition + fish.velocity);
+
+      fish.move(fish);
+      assert.equal(fish.x, initialPosition + (2 * fish.velocity));
+    });
+
+    it ('should reverse direction at right border', function() {
+      var canvasWidth = 1000;
+      var fish = new Fish({x: 1001});
+      fish.reverseDirection(canvasWidth);
+
+      assert.equal(fish.velocity, (-1 * defaultVelocity));
+
+      fish.x = 500
+
+      assert.equal(fish.velocity, (-1 * defaultVelocity));
+    });
+
+    it ('should reverse direction at left border', function() {
+      var canvasWidth = 1000;
+      var fish = new Fish({x: 0, velocity: -1});
+      fish.reverseDirection(canvasWidth);
+
+      assert.equal(fish.velocity, (1 * defaultVelocity));
+
+      fish.x = 500
+
+      assert.equal(fish.velocity, (1 * defaultVelocity));
     });
   })
 })
