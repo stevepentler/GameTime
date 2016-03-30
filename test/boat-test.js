@@ -4,9 +4,8 @@ const assert = chai.assert;
 const Boat = require('../lib/boat');
 
 describe('Boat', function() {
+  var boat = new Boat({});
   context('with default attributes', function() {
-    var boat = new Boat({});
-
     it ('should assign a x default coordinate', function() {
       assert.equal(boat.x, 500);
     });
@@ -35,6 +34,30 @@ describe('Boat', function() {
       assert.equal(customBoat.width, 3);
       assert.equal(customBoat.height, 4);
       assert.equal(customBoat.velocity, 5);
+    });
+  })
+
+  context('moves horizontally', function() {
+    it ('should move boat left', function() {
+      var initialPosition = boat.x
+      assert.equal(boat.x, boat.x);
+
+      boat.moveBoatLeft(boat);
+      assert.equal(boat.x, initialPosition - 5);
+
+      boat.moveBoatLeft(boat);
+      assert.equal(boat.x, initialPosition - 10);
+    });
+
+    it ('should move boat right', function() {
+      var initialPosition = boat.x
+      assert.equal(boat.x, boat.x);
+
+      boat.moveBoatRight(boat);
+      assert.equal(boat.x, initialPosition + 5);
+
+      boat.moveBoatRight(boat);
+      assert.equal(boat.x, initialPosition + 10);
     });
   })
 })
