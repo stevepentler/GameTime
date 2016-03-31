@@ -27,7 +27,7 @@ describe('Bullet', function() {
     });
 
     it ('should assign a default velocity', function() {
-      assert.equal(bullet.velocity, 10);
+      assert.equal(bullet.velocity, 4);
     });
 
     it ('should assign custom properties', function() {
