@@ -9,18 +9,56 @@
   <body>
     <div class="game-view">
       <div class="row">
-        <h1><center>Shrimpin' Ain't Easy</center></h1>
+        <div>
+          <br>
+          <h1><center>Shrimpin' Ain't Easy</center></h1>
+        </div>
       </div>
       <div class="row">
-        <div class="col s6">
+        <div class="col s7 center">
           <br>
           <canvas id="game" tabindex="1" height=700 width=1000></canvas>
         </div>
-        <div class="col s6">
+
+        <div class="col s5">
           <div class="container">
-            <h3>Welcome</h3>
+            <h4>Leaderboard</h4>
+            <table class="striped">
+              <thead>
+                <tr>
+                    <th data-field="id">Rank</th>
+                    <th data-field="name">Score</th>
+                </tr>
+              </thead>
+              <tbody id="table_body"></tbody>
+            </table>
+          </div>
+
+          <br>
+
+          <div class="container">
+            <h4>How to play</h4>
+            <h6>
+              Use the left and right arrow keys to move Forrest and Jenny
+              across the water and press spacebar to fire. Carefully time your
+              shot to catch as many shrimp as you can with a single cast. Ready
+              to fish? Press start below.
+            </h6>
+          </div>
+
+          <br>
+
+          <center>
+            <button type="button" id="start-game">Start New Game</button>
+          </center>
+
+          <br>
+
+          <div class="container current-score">
+            <h4>Score 0</h4>
           </div>
         </div>
+
       </div>
     </div>
 
