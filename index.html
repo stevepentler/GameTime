@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css'>
     <link rel="stylesheet" type="text/css" href="./lib/stylesheets/canvas.css">
     <title>Shrimpin' Ain't Easy</title>
   </head>
+
   <body>
     <div class="game-view">
       <div class="row">
-        <div>
-          <br>
-          <h1><center>Shrimpin' Ain't Easy</center></h1>
-        </div>
+        <br>
+        <h1><center>Shrimpin' Ain't Easy</center></h1>
       </div>
       <div class="row">
         <div class="col s7 center">
@@ -26,18 +26,20 @@
             <table class="striped">
               <thead>
                 <tr>
-                    <th data-field="id">Rank</th>
-                    <th data-field="name">Score</th>
+                    <th>Rank</th>
+                    <th>Score</th>
                 </tr>
               </thead>
-              <tbody id="table_body"></tbody>
+              <tbody class="table-body">
+
+              </tbody>
             </table>
           </div>
 
           <br>
 
           <div class="container">
-            <h4>How to play</h4>
+            <h4>How To Play</h4>
             <h6>
               Use the left and right arrow keys to move Forrest and Jenny
               across the water and press spacebar to fire. Carefully time your
@@ -49,13 +51,13 @@
           <br>
 
           <center>
-            <button type="button" id="start-game">Start New Game</button>
+            <button class="btn start-game">Start New Game</button>
           </center>
 
           <br>
 
           <div class="container current-score">
-            <h4>Score 0</h4>
+            <h4>Current Score</h4>
           </div>
         </div>
 
