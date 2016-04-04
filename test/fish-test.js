@@ -1,7 +1,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-const Fish = require('../lib/fish');
+const Fish = require('../lib/fish').Fish;
 
 describe('Fish', function() {
   var fish = new Fish({});
@@ -17,15 +17,19 @@ describe('Fish', function() {
     });
 
     it ('should assign a default width', function() {
-      assert.equal(fish.width, 10);
+      assert.equal(fish.width, 50);
     });
 
     it ('should assign a default height', function() {
-      assert.equal(fish.height, 10);
+      assert.equal(fish.height, 25);
     });
 
     it ('should assign a default velocity', function() {
       assert.equal(fish.velocity, 1);
+    });
+
+    it ('should assign a default round', function() {
+      assert.equal(fish.round, 1);
     });
 
     it ('should assign custom properties', function() {

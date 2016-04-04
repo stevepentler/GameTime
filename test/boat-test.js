@@ -26,6 +26,10 @@ describe('Boat', function() {
       assert.equal(boat.velocity, 5);
     });
 
+    it ('should assign a default score of zero', function() {
+      assert.equal(boat.score, 0);
+    });
+
     it ('should assign custom properties', function() {
       var customBoat = new Boat({x: 1, y: 2, width: 3, height: 4, velocity: 5}, boat)
 
