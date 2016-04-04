@@ -1,10 +1,10 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-const Fish = require('../lib/fish')
-const Bullet = require('../lib/bullet')
-const Boat = require('../lib/boat')
-const collision = require('../lib/collision')
+const Fish = require('../lib/fish').Fish;
+const Bullet = require('../lib/bullet');
+const Boat = require('../lib/boat');
+const collision = require('../lib/collision');
 
 describe('Collision detection', function() {
   context('between a bullet and a fish', function() {
