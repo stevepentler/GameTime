@@ -1,7 +1,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-const Fish = require('../lib/fish');
+const Fish = require('../lib/fish').Fish;
 
 describe('Fish', function() {
   var fish = new Fish({});
