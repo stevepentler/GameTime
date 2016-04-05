@@ -4,6 +4,7 @@
   <head>
     <title>Shrimpin' Ain't Easy</title>
     <meta charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css'>
     <link rel="stylesheet" type="text/css" href="./lib/stylesheets/canvas.css">
     <script type='text/javascript' src='./libraries/p5.min.js'></script>
@@ -16,18 +17,21 @@
     <div class="game-view">
       <div class="row">
         <br>
-        <h1><center>Shrimpin' Ain't Easy</center></h1>
       </div>
       <div class="row">
         <div class="col s7 center">
-          <br>
+          <h1 class="center custom-font shrimp-red black-shadow">Shrimpin' Ain't Easy</h1>
           <canvas id="game" tabindex="1" height=700 width=1000></canvas>
+          <br>
+            <span class="btn"><-  -> : Move Boat</span>
+            <span class="btn">Spacebar: Drop Net</span>
+            <span class="btn">Enter: Begin Round</span>
         </div>
 
         <div class="col s5">
           <div class="container">
-            <h4>Leaderboard</h4>
-            <table class="striped">
+            <h3 class="custom-font center">Leaderboard</h3>
+            <table class="striped centered">
               <thead>
                 <tr>
                     <th>Rank</th>
@@ -42,41 +46,18 @@
 
           <br>
 
-          <div class="container">
-            <h4>How To Play</h4>
-            <h6>
-              Use the left and right arrow keys to move Forrest and Jenny
-              across the water and press spacebar to fire. Carefully time your
-              shot to catch as many shrimp as you can with a single cast. Ready
-              to fish? Click the ocean and press Enter to begin.
-            </h6>
+          <div class="card center">
+            <h2 id="game-status" class="custom-font"></h2>
           </div>
 
           <br>
 
-          <center>
-            <button class="btn start-game">Start New Game</button>
-          </center>
-
-          <br>
-
-          <div class="container">
-            <h1 id="game-status"></h1>
-          </div>
-          <div class="container">
-            <h4>Current Score</h4>
-            <h5 id="score"></h5>
-          </div>
-          <div class="container">
-            <h4>Current Round</h4>
+          <div class="card center">
             <h5 id="round"></h5>
-          </div>
-          <div class="container">
-            <h4>Time Remaining</h4>
-            <h5 id="timer"></h5>
+            <h4 id="timer"></h4>
+            <h4 id="score"></h4>
           </div>
         </div>
-
       </div>
     </div>
 
