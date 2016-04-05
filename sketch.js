@@ -8,6 +8,7 @@ function preload(){
 }
 
 function setup() {
+  createCanvas(0, 0 )
   song.play();
   peaks = song.getPeaks([width]);
   amplitude = new p5.Amplitude();

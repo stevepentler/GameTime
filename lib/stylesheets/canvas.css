@@ -19,5 +19,16 @@ canvas {
   color: #7E2529;
 }
 
-canvas #defaultCanvas0.style.height = 0px;
-  
+.title {
+  color: #7E2529;
+  text-shadow: 2px 2px black;
+  font-family: 'Indie Flower', cursive;
+  margin: 15px 0 -10px 0 ;
+}
+
+canvas #defaultCanvas0 {
+  outline: 3px solid magenta;
+  width: 0px !important;
+  height: 0px !important;
+
+}
