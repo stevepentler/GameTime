@@ -12,7 +12,6 @@ function setup() {
   peaks = song.getPeaks([width]);
   amplitude = new p5.Amplitude();
   level = amplitude.getLevel();
-  console.log(level)
 }
 
 module.exports = level;
