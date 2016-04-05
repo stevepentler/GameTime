@@ -33,21 +33,19 @@ describe('CanvasMotion', function() {
     });
 
     it ('boat does not move left if x < 15', function() {
-      var customBoat = new Boat({x: 15, y: 2, width: 3, height: 4, velocity: 5}, boat);
-
+      var customBoat = new Boat({x: 15, y: 2, width: 3, height: 4, velocity: 5, score: 0});
       var initialPosition2 = customBoat.x;
 
-      customBoat.moveBoatLeft(customBoat);
+      canvasMotion.moveBoatLeft(customBoat);
       assert.equal(customBoat.x, initialPosition2);
     });
 
     it ('boat does not move right if x + width > canvasWidth', function() {
-      var customBoat = new Boat({x: 690 , y: 2, width: 10, height: 4, velocity: 5}, boat);
+      var customBoat2 = new Boat({x: 990 , y: 2, width: 10, height: 4, velocity: 5, score: 0});
+      var initialPosition2 = customBoat2.x;
 
-      var initialPosition2 = customBoat.x;
-
-      customBoat.moveBoatRight(customBoat, canvasWidth);
-      assert.equal(customBoat.x, initialPosition2);
+      canvasMotion.moveBoatRight(customBoat2, canvasWidth);
+      assert.equal(customBoat2.x, initialPosition2);
     });
   });
 
