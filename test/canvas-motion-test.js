@@ -3,8 +3,9 @@ const assert = chai.assert;
 
 const CanvasMotion = require('../lib/canvas-motion')
 const Boat         = require('../lib/boat');
-const canvasWidth  = 1000
-const canvasHeight = 700
+const Fish = require('../lib/fish').Fish;
+const canvasWidth  = 1000;
+const canvasHeight = 700;
 
 describe('CanvasMotion', function() {
   var canvasMotion = new CanvasMotion(canvasWidth, canvasHeight);
@@ -46,6 +47,46 @@ describe('CanvasMotion', function() {
 
       canvasMotion.moveBoatRight(customBoat2, canvasWidth);
       assert.equal(customBoat2.x, initialPosition2);
+    });
+  });
+
+  context('fish moves horizontally', function() {
+    var fish = new Fish({});
+    var initialPosition = fish.x;
+    var defaultVelocity = fish.velocity;
+
+    it ('should move', function() {
+      assert.equal(fish.x, fish.x);
+
+      fish.move(fish);
+      assert.equal(fish.x, initialPosition + fish.velocity);
+
+      fish.move(fish);
+      assert.equal(fish.x, initialPosition + (2 * fish.velocity));
+    });
+
+    it ('should reverse direction at right border', function() {
+      var canvasWidth = 1000;
+      var fish = new Fish({x: 1001});
+      fish.reverseDirection(canvasWidth);
+
+      assert.equal(fish.velocity, (-1 * defaultVelocity));
+
+      fish.x = 500
+
+      assert.equal(fish.velocity, (-1 * defaultVelocity));
+    });
+
+    it ('should reverse direction at left border', function() {
+      var canvasWidth = 1000;
+      var fish = new Fish({x: 0, velocity: -1});
+      fish.reverseDirection(canvasWidth);
+
+      assert.equal(fish.velocity, (1 * defaultVelocity));
+
+      fish.x = 500
+
+      assert.equal(fish.velocity, (1 * defaultVelocity));
     });
   });
 
