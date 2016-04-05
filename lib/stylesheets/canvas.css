@@ -5,3 +5,7 @@ canvas {
 .btn {
   font-size: 1.5em;
 }
+
+.custom-font {
+  font-family: 'Indie Flower', cursive;
+}
