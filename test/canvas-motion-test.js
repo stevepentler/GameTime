@@ -3,7 +3,7 @@ const assert = chai.assert;
 
 const CanvasMotion = require('../lib/canvas-motion')
 const Boat         = require('../lib/boat');
-const Fish = require('../lib/fish').Fish;
+const Fish         = require('../lib/fish').Fish;
 const canvasWidth  = 1000;
 const canvasHeight = 700;
 
@@ -50,44 +50,99 @@ describe('CanvasMotion', function() {
     });
   });
 
-  context('fish moves horizontally', function() {
-    var fish = new Fish({});
-    var initialPosition = fish.x;
-    var defaultVelocity = fish.velocity;
+  context('fish moves with positive velocity', function() {
+    var fish = new Fish({x: 1, y: 0, velocity: 1});
+    var fishies = [];
+    fishies.push(fish);
 
-    it ('should move', function() {
-      assert.equal(fish.x, fish.x);
+    it ('should move one space during round 1', function() {
+      var round = 1;
+      var initialPosition = fish.x
 
-      fish.move(fish);
+      assert.equal(fish.x, initialPosition)
+      canvasMotion.moveFish(fishies, round);
+
       assert.equal(fish.x, initialPosition + fish.velocity);
+    });
 
-      fish.move(fish);
+    it ('should move two spaces during round 2', function() {
+      var initialPosition = fish.x;
+
+      assert.equal(fish.x, initialPosition)
+      canvasMotion.moveFish(fishies, 2);
+
       assert.equal(fish.x, initialPosition + (2 * fish.velocity));
     });
 
-    it ('should reverse direction at right border', function() {
-      var canvasWidth = 1000;
-      var fish = new Fish({x: 1001});
-      fish.reverseDirection(canvasWidth);
+    it ('should move three spaces during round 3', function() {
+      var initialPosition = fish.x;
 
-      assert.equal(fish.velocity, (-1 * defaultVelocity));
+      assert.equal(fish.x, initialPosition)
+      canvasMotion.moveFish(fishies, 3);
 
-      fish.x = 500
-
-      assert.equal(fish.velocity, (-1 * defaultVelocity));
-    });
-
-    it ('should reverse direction at left border', function() {
-      var canvasWidth = 1000;
-      var fish = new Fish({x: 0, velocity: -1});
-      fish.reverseDirection(canvasWidth);
-
-      assert.equal(fish.velocity, (1 * defaultVelocity));
-
-      fish.x = 500
-
-      assert.equal(fish.velocity, (1 * defaultVelocity));
+      assert.equal(fish.x, initialPosition + (3 * fish.velocity));
     });
   });
+
+  context('fish reverses direction', function() {
+    // console.log(canvasWidth)
+    var fish = new Fish({x: canvasWidth, y: 0, velocity: 1});
+    var fishies = [];
+    fishies.push(fish);
+
+    xit ('should reverse direction one space during round 1', function() {
+      var round = 1;
+      var initialPosition = fish.x
+      console.log(canvasWidth)
+      var initialVelocity = fish.velocity
+
+      assert.equal(initialVelocity, fish.velocity);
+
+      canvasMotion.moveFish(fishies, round);
+      assert.equal(-1 * initialVelocity, fish.velocity);
+    });
+
+    xit ('should move two spaces during round 2', function() {
+      var initialPosition = fish.x;
+
+      assert.equal(fish.x, initialPosition)
+      canvasMotion.moveFish(fishies, 2);
+
+      assert.equal(fish.x, initialPosition + (2 * fish.velocity));
+    });
+
+    xit ('should move three spaces during round 3', function() {
+      var initialPosition = fish.x;
+
+      assert.equal(fish.x, initialPosition)
+      canvasMotion.moveFish(fishies, 3);
+
+      assert.equal(fish.x, initialPosition + (3 * fish.velocity));
+    });
+  });
+
+
+  //   it ('should reverse direction at right border', function() {
+  //     var fish = new Fish({x: 1001});
+  //     canvasMotion.reverseFishDirection(fish, canvasWidth);
+  //
+  //     assert.equal(fish.velocity, (-1 * defaultVelocity));
+  //
+  //     fish.x = 500
+  //
+  //     assert.equal(fish.velocity, (-1 * defaultVelocity));
+  //   });
+  //
+  //   it ('should reverse direction at left border', function() {
+  //     var fish = new Fish({x: 0, velocity: -1});
+  //     canvasMotion.reverseF(canvasWidth);
+  //
+  //     assert.equal(fish.velocity, (1 * defaultVelocity));
+  //
+  //     fish.x = 500
+  //
+  //     assert.equal(fish.velocity, (1 * defaultVelocity));
+  //   });
+  // });
 
 });
