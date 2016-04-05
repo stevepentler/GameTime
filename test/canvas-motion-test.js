@@ -4,8 +4,8 @@ const assert = chai.assert;
 const CanvasMotion = require('../lib/canvas-motion')
 const Boat         = require('../lib/boat');
 const Fish = require('../lib/fish').Fish;
-const canvasWidth  = 1000;
-const canvasHeight = 700;
+const canvasWidth  = 750;
+const canvasHeight = 500;
 
 describe('CanvasMotion', function() {
   var canvasMotion = new CanvasMotion(canvasWidth, canvasHeight);

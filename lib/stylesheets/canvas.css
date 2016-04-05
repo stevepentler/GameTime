@@ -3,7 +3,7 @@ canvas {
 }
 
 .btn {
-  font-size: 1.8em;
+  font-size: 1.2em;
   font-family: 'Indie Flower', cursive;
 }
 
@@ -12,10 +12,12 @@ canvas {
 }
 
 .black-shadow {
-  text-shadow: 3px 3px black;
+  text-shadow: 2px 2px black;
 }
 
 .shrimp-red {
   color: #7E2529;
 }
 
+canvas #defaultCanvas0.style.height = 0px;
+  

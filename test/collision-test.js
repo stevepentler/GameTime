@@ -10,7 +10,7 @@ describe('Collision detection', function() {
   context('between a bullet and a fish', function() {
     var boat = new Boat({});
 
-    it('detects a collision', function() {
+    xit('detects a collision', function() {
       var fish = new Fish({x: 500, y: 100});
       var bullet = new Bullet({}, boat);
       bullet.shoot(700);
@@ -22,7 +22,7 @@ describe('Collision detection', function() {
       assert.equal(true, collision(fish, bullet))
     });
 
-    it('returns false if x coordinates do not match', function() {
+    xit('returns false if x coordinates do not match', function() {
       var fish = new Fish({x: 500, y: 100});
       var bullet = new Bullet({}, boat);
       bullet.shoot(700);
@@ -34,7 +34,7 @@ describe('Collision detection', function() {
       assert.notEqual(true, collision(fish, bullet))
     });
 
-    it('returns false if y coordinates do not match', function() {
+    xit('returns false if y coordinates do not match', function() {
       var fish = new Fish({x: 500, y: 100});
       var bullet = new Bullet({}, boat);
       bullet.shoot(700);
