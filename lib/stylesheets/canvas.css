@@ -3,9 +3,19 @@ canvas {
 }
 
 .btn {
-  font-size: 1.5em;
+  font-size: 1.8em;
+  font-family: 'Indie Flower', cursive;
 }
 
 .custom-font {
   font-family: 'Indie Flower', cursive;
 }
+
+.black-shadow {
+  text-shadow: 3px 3px black;
+}
+
+.shrimp-red {
+  color: #7E2529;
+}
+
