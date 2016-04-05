@@ -45,6 +45,6 @@ describe('Boat', function() {
       assert.equal(customBoat.height, 4);
       assert.equal(customBoat.velocity, 5);
     });
-  })
+  });
 
 });

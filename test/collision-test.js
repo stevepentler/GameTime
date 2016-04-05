@@ -16,10 +16,10 @@ describe('Collision detection', function() {
       bullet.shoot(700);
       bullet.x = 500;
       bullet.y = 100;
-      console.log(fish)
-      console.log(bullet)
+      console.log(fish);
+      console.log(bullet);
 
-      assert.equal(true, collision(fish, bullet))
+      assert.equal(true, collision(fish, bullet));
     });
 
     it('returns false if x coordinates do not match', function() {
@@ -28,10 +28,10 @@ describe('Collision detection', function() {
       bullet.shoot(700);
       bullet.x = -10000;
       bullet.y = 100;
-      console.log(fish)
-      console.log(bullet)
+      console.log(fish);
+      console.log(bullet);
 
-      assert.notEqual(true, collision(fish, bullet))
+      assert.notEqual(true, collision(fish, bullet));
     });
 
     it('returns false if y coordinates do not match', function() {
@@ -40,10 +40,10 @@ describe('Collision detection', function() {
       bullet.shoot(700);
       bullet.x = 500;
       bullet.y = -10000;
-      console.log(fish)
-      console.log(bullet)
+      console.log(fish);
+      console.log(bullet);
 
-      assert.notEqual(true, collision(fish, bullet))
+      assert.notEqual(true, collision(fish, bullet));
     });
 
   });

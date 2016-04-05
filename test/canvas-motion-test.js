@@ -1,7 +1,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-const CanvasMotion = require('../lib/canvas-motion')
+const CanvasMotion = require('../lib/canvas-motion');
 const Boat         = require('../lib/boat');
 const Fish = require('../lib/fish').Fish;
 const canvasWidth  = 1000;
@@ -13,7 +13,7 @@ describe('CanvasMotion', function() {
 
   context('boat moves horizontally', function() {
     it ('should move boat left', function() {
-      var initialPosition = boat.x
+      var initialPosition = boat.x;
       assert.equal(boat.x, boat.x);
 
       canvasMotion.moveBoatLeft(boat);
@@ -72,7 +72,7 @@ describe('CanvasMotion', function() {
 
       assert.equal(fish.velocity, (-1 * defaultVelocity));
 
-      fish.x = 500
+      fish.x = 500;
 
       assert.equal(fish.velocity, (-1 * defaultVelocity));
     });
@@ -84,7 +84,7 @@ describe('CanvasMotion', function() {
 
       assert.equal(fish.velocity, (1 * defaultVelocity));
 
-      fish.x = 500
+      fish.x = 500;
 
       assert.equal(fish.velocity, (1 * defaultVelocity));
     });

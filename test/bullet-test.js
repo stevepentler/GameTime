@@ -32,7 +32,7 @@ describe('Bullet', function() {
     });
 
     it ('should assign custom properties', function() {
-      var customBullet = new Bullet({x: 1, y: 2, width: 3, height: 4, velocity: 5}, boat)
+      var customBullet = new Bullet({x: 1, y: 2, width: 3, height: 4, velocity: 5}, boat);
 
       assert.equal(customBullet.x, boat.x - bulletOffsetX);
       assert.equal(customBullet.y, boat.y + bulletOffsetY);
@@ -40,5 +40,5 @@ describe('Bullet', function() {
       assert.equal(customBullet.height, 4);
       assert.equal(customBullet.velocity, 5);
     });
-  })
-})
+  });
+});
