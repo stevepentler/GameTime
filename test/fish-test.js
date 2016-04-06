@@ -33,7 +33,7 @@ describe('Fish', function() {
     });
 
     it ('should assign custom properties', function() {
-      var customFish = new Fish({x: 1, y: 2, width: 3, height: 4, velocity: 5})
+      var customFish = new Fish({x: 1, y: 2, width: 3, height: 4, velocity: 5});
 
       assert.equal(customFish.x, 1);
       assert.equal(customFish.y, 2);
