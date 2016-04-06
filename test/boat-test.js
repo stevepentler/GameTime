@@ -36,14 +36,21 @@ describe('Boat', function() {
                                  y: 2,
                                  width: 3,
                                  height: 4,
-                                 velocity: 5},
-                                 boat);
+                                 velocity: 5
+                                });
 
       assert.equal(customBoat.x, 1);
       assert.equal(customBoat.y, 2);
       assert.equal(customBoat.width, 3);
       assert.equal(customBoat.height, 4);
       assert.equal(customBoat.velocity, 5);
+    });
+
+    it ('cannot assign custom score', function() {
+      var customBoat = new Boat({score: 100});
+
+      assert.notEqual(customBoat.score, 100);
+      assert.equal(customBoat.score, 0);
     });
 
     it ('should track score changes', function() {
@@ -53,7 +60,6 @@ describe('Boat', function() {
 
       boat.score++
       assert.equal(boat.score, initialScore + 2);
-
     });
 
   });
