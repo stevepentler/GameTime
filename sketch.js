@@ -1,18 +1,23 @@
 var amplitude, 
     level,
     song, 
-    speed;
+    speed,
+    amplitudeLevel;
 
 function preload(){
   song = loadSound('/assets/FortunateSon.mp3');
 }
 
 function setup() {
-  createCanvas(0, 0)
+  createCanvas(100, 100);
   song.play();
-  peaks = song.getPeaks([width]);
   amplitude = new p5.Amplitude();
-  level = amplitude.getLevel();
+
 }
 
-module.exports = level;
+function draw() {
+  level = amplitude.getLevel();
+  var size = map(level, 0, 1, 1, 2);
+  amplitudeLevel = createElement('span', size);
+  console.log("size:" + size);
+}
