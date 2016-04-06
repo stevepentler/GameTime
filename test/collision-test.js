@@ -12,25 +12,38 @@ describe('Collision detection', function() {
     var boat    = new Boat({});
     var fish    = new Fish({x: 500, y: 100});
     var bullet  = new Bullet({}, boat);
-    var bullets = [];
 
-    it('detects a collision', function() {
+    it('detects a direct hit collision', function() {
       bullet.x = 500;
       bullet.y = 100;
 
       assert.equal(true, collision(fish, bullet))
     });
 
-    it('returns false if x coordinates do not match', function() {
-      bullet.x = -10000;
+    it('detects a slight overlap collision on x axis', function() {
+      bullet.x = 525;
+      bullet.y = 100;
+
+      assert.equal(true, collision(fish, bullet))
+    });
+
+    it('detects a slight overlap collision on y axis', function() {
+      bullet.x = 500;
+      bullet.y = 94;
+
+      assert.equal(true, collision(fish, bullet))
+    });
+
+    it('returns false if (x coordinate + width) does not overlap', function() {
+      bullet.x = 493;
       bullet.y = 100;
 
       assert.notEqual(true, collision(fish, bullet))
     });
 
-    it('returns false if y coordinates do not match', function() {
+    it('returns false if (y coordinate + height) does not overlap', function() {
       bullet.x = 500;
-      bullet.y = -10000;
+      bullet.y = 93;
 
       assert.notEqual(true, collision(fish, bullet))
     });
