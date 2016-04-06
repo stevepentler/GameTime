@@ -2,7 +2,8 @@ var amplitude,
     level,
     song, 
     speed,
-    amplitudeLevel;
+    amplitudeLevel,
+    count = 0;
 
 function preload(){
   song = loadSound('/assets/FortunateSon.mp3');
@@ -18,6 +19,14 @@ function setup() {
 function draw() {
   level = amplitude.getLevel();
   var size = map(level, 0, 1, 1, 2);
-  amplitudeLevel = createElement('span hidden', size);
-  console.log("size:" + size);
+  count++;
+  if (count === 1) {
+    amplitudeLevel = createElement('span', size).addClass('amplitudeLevel');
+    console.log("size:" + size);
+  } else {
+    debugger
+    amplitudeLevel.html('');
+    amplitudeLevel = createElement('span', size).addClass('amplitudeLevel');
+    console.log("size:" + size);
+  }
 }
