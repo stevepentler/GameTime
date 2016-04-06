@@ -85,64 +85,36 @@ describe('CanvasMotion', function() {
   });
 
   context('fish reverses direction', function() {
-    // console.log(canvasWidth)
     var fish = new Fish({x: canvasWidth, y: 0, velocity: 1});
     var fishies = [];
     fishies.push(fish);
 
-    xit ('should reverse direction one space during round 1', function() {
+    it ('should reverse direction one space during round 1', function() {
       var round = 1;
-      var initialPosition = fish.x;
-      console.log(canvasWidth);
       var initialVelocity = fish.velocity;
 
-      assert.equal(initialVelocity, fish.velocity);
-
       canvasMotion.moveFish(fishies, round);
+
       assert.equal(-1 * initialVelocity, fish.velocity);
     });
 
-    xit ('should move two spaces during round 2', function() {
-      var initialPosition = fish.x;
+    it ('should reverse direction two spaces during round 2', function() {
+      var round = 2;
+      var initialVelocity = fish.velocity;
 
-      assert.equal(fish.x, initialPosition);
-      canvasMotion.moveFish(fishies, 2);
+      canvasMotion.moveFish(fishies, round);
 
-      assert.equal(fish.x, initialPosition + (2 * fish.velocity));
+      assert.equal(-2 * initialVelocity, fish.velocity * round);
     });
 
-    xit ('should move three spaces during round 3', function() {
-      var initialPosition = fish.x;
+    it ('should reverse direction three spacess during round 3', function() {
+      var round = 3;
+      var initialVelocity = fish.velocity;
 
-      assert.equal(fish.x, initialPosition);
-      canvasMotion.moveFish(fishies, 3);
+      canvasMotion.moveFish(fishies, round);
 
-      assert.equal(fish.x, initialPosition + (3 * fish.velocity));
+      assert.equal(-3 * initialVelocity, fish.velocity * round);
     });
   });
-
-
-  //   it ('should reverse direction at right border', function() {
-  //     var fish = new Fish({x: 1001});
-  //     canvasMotion.reverseFishDirection(fish, canvasWidth);
-  //
-  //     assert.equal(fish.velocity, (-1 * defaultVelocity));
-  //
-  //     fish.x = 500
-  //
-  //     assert.equal(fish.velocity, (-1 * defaultVelocity));
-  //   });
-  //
-  //   it ('should reverse direction at left border', function() {
-  //     var fish = new Fish({x: 0, velocity: -1});
-  //     canvasMotion.reverseF(canvasWidth);
-  //
-  //     assert.equal(fish.velocity, (1 * defaultVelocity));
-  //
-  //     fish.x = 500
-  //
-  //     assert.equal(fish.velocity, (1 * defaultVelocity));
-  //   });
-  // });
 
 });
