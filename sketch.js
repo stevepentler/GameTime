@@ -9,7 +9,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(100, 100);
+  createCanvas(0, 0);
   song.play();
   amplitude = new p5.Amplitude();
 
