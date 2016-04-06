@@ -15,7 +15,7 @@ describe('CanvasMotion', function() {
   var boat = new Boat({x: canvasWidth/2, y: 25, width: 200, height: 150, velocity: 5, score: 0});
 
   context('boat moves horizontally', function() {
-    it ('should move boat left', function() {
+    it ('boat moves left with velocity of 5', function() {
       var initialPosition = boat.x;
       assert.equal(boat.x, boat.x);
 
@@ -26,7 +26,7 @@ describe('CanvasMotion', function() {
       assert.equal(boat.x, initialPosition - 10);
     });
 
-    it ('should move boat right', function() {
+    it ('boat moves right with velocity of 5', function() {
       var initialPosition2 = boat.x;
 
       canvasMotion.moveBoatRight(boat, canvasWidth);
@@ -37,19 +37,21 @@ describe('CanvasMotion', function() {
     });
 
     it ('boat does not move left if x < 15', function() {
-      var customBoat = new Boat({x: 15, y: 2, width: 3, height: 4, velocity: 5, score: 0});
-      var initialPosition2 = customBoat.x;
+      var boatWidth = 15;
+      var customBoat = new Boat({x: boatWidth - 1, width: boatWidth});
+      var initialPosition = customBoat.x;
 
       canvasMotion.moveBoatLeft(customBoat);
-      assert.equal(customBoat.x, initialPosition2);
+      assert.equal(customBoat.x, initialPosition);
     });
 
     it ('boat does not move right if x + width > canvasWidth', function() {
-      var customBoat2 = new Boat({x: 990 , y: 2, width: 10, height: 4, velocity: 5, score: 0});
-      var initialPosition2 = customBoat2.x;
+      var boatWidth = 15;
+      var customBoat = new Boat({x: canvasWidth - boatWidth, width: boatWidth});
+      var initialPosition = customBoat.x;
 
-      canvasMotion.moveBoatRight(customBoat2, canvasWidth);
-      assert.equal(customBoat2.x, initialPosition2);
+      canvasMotion.moveBoatRight(customBoat, canvasWidth);
+      assert.equal(customBoat.x, initialPosition);
     });
   });
 
@@ -126,7 +128,7 @@ describe('CanvasMotion', function() {
     });
   });
 
-  context('bullet moves vertically', function() {
+  context('bullet moves vertically at velocity of 3', function() {
     var bullet  = new Bullet({}, boat);
     var bullets = [];
     bullets.push(bullet);
@@ -136,9 +138,10 @@ describe('CanvasMotion', function() {
 
       canvasMotion.moveBullet(bullets);
       assert.equal(bullet.y, initialPosition + 4);
-      assert.notEqual(bullet.y, initialPosition + 5);
 
       canvasMotion.moveBullet(bullets);
+      assert.equal(bullet.y, initialPosition + 8);
+
       canvasMotion.moveBullet(bullets);
       assert.equal(bullet.y, initialPosition + 12);
     });
