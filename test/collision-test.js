@@ -34,14 +34,14 @@ describe('Collision detection', function() {
       assert.equal(true, collision(fish, bullet))
     });
 
-    it('returns false if (x coordinate + width) does not overlap', function() {
+    it('returns not true if (x coordinate + width) does not overlap', function() {
       bullet.x = 493;
       bullet.y = 100;
 
       assert.notEqual(true, collision(fish, bullet))
     });
 
-    it('returns false if (y coordinate + height) does not overlap', function() {
+    it('returns not true if (y coordinate + height) does not overlap', function() {
       bullet.x = 500;
       bullet.y = 93;
 
