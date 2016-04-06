@@ -3,7 +3,8 @@ const assert = chai.assert;
 
 const CanvasMotion = require('../lib/canvas-motion');
 const Boat         = require('../lib/boat');
-const Fish = require('../lib/fish').Fish;
+const Fish         = require('../lib/fish').Fish;
+const Bullet       = require('../lib/bullet');
 const canvasWidth  = 750;
 const canvasHeight = 500;
 
@@ -50,43 +51,88 @@ describe('CanvasMotion', function() {
     });
   });
 
-  context('fish moves horizontally', function() {
-    var fish = new Fish({});
-    var initialPosition = fish.x;
-    var defaultVelocity = fish.velocity;
+  context('fish moves with positive velocity', function() {
+    var fish = new Fish({x: 1, y: 0, velocity: 1});
+    var fishies = [];
+    fishies.push(fish);
 
-    it ('should move', function() {
-      assert.equal(fish.x, fish.x);
+    it ('should move one space during round 1', function() {
+      var round = 1;
+      var initialPosition = fish.x;
 
-      fish.move(fish);
+      assert.equal(fish.x, initialPosition);
+      canvasMotion.moveFish(fishies, round);
+
       assert.equal(fish.x, initialPosition + fish.velocity);
+    });
 
-      fish.move(fish);
+    it ('should move two spaces during round 2', function() {
+      var initialPosition = fish.x;
+
+      assert.equal(fish.x, initialPosition);
+      canvasMotion.moveFish(fishies, 2);
+
       assert.equal(fish.x, initialPosition + (2 * fish.velocity));
     });
 
-    it ('should reverse direction at right border', function() {
-      var canvasWidth = 1000;
-      var fish = new Fish({x: 1001});
-      fish.reverseDirection(canvasWidth);
+    it ('should move three spaces during round 3', function() {
+      var initialPosition = fish.x;
 
-      assert.equal(fish.velocity, (-1 * defaultVelocity));
+      assert.equal(fish.x, initialPosition);
+      canvasMotion.moveFish(fishies, 3);
 
-      fish.x = 500;
+      assert.equal(fish.x, initialPosition + (3 * fish.velocity));
+    });
+  });
 
-      assert.equal(fish.velocity, (-1 * defaultVelocity));
+  context('fish reverses direction', function() {
+    var fish = new Fish({x: canvasWidth, y: 0, velocity: 1});
+    var fishies = [];
+    fishies.push(fish);
+
+    it ('should reverse direction one space during round 1', function() {
+      var round = 1;
+      var initialVelocity = fish.velocity;
+
+      canvasMotion.moveFish(fishies, round);
+
+      assert.equal(-round * initialVelocity, fish.velocity);
     });
 
-    it ('should reverse direction at left border', function() {
-      var canvasWidth = 1000;
-      var fish = new Fish({x: 0, velocity: -1});
-      fish.reverseDirection(canvasWidth);
+    it ('should reverse direction two spaces during round 2', function() {
+      var round = 2;
+      var initialVelocity = fish.velocity;
 
-      assert.equal(fish.velocity, (1 * defaultVelocity));
+      canvasMotion.moveFish(fishies, round);
 
-      fish.x = 500;
+      assert.equal(-round * initialVelocity, fish.velocity * round);
+    });
 
-      assert.equal(fish.velocity, (1 * defaultVelocity));
+    it ('should reverse direction three spacess during round 3', function() {
+      var round = 3;
+      var initialVelocity = fish.velocity;
+
+      canvasMotion.moveFish(fishies, round);
+
+      assert.equal(-round * initialVelocity, fish.velocity * round);
+    });
+  });
+
+  context('bullet moves vertically', function() {
+    var bullet  = new Bullet({}, boat);
+    var bullets = [];
+    bullets.push(bullet);
+
+    it ('should move bullet downward', function() {
+      var initialPosition = bullet.y;
+
+      canvasMotion.moveBullet(bullets);
+      assert.equal(bullet.y, initialPosition + 4);
+      assert.notEqual(bullet.y, initialPosition + 5);
+
+      canvasMotion.moveBullet(bullets);
+      canvasMotion.moveBullet(bullets);
+      assert.equal(bullet.y, initialPosition + 12);
     });
   });
 
