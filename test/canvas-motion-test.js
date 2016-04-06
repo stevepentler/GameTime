@@ -4,6 +4,7 @@ const assert = chai.assert;
 const CanvasMotion = require('../lib/canvas-motion');
 const Boat         = require('../lib/boat');
 const Fish         = require('../lib/fish').Fish;
+const Bullet       = require('../lib/bullet');
 const canvasWidth  = 750;
 const canvasHeight = 500;
 
@@ -95,7 +96,7 @@ describe('CanvasMotion', function() {
 
       canvasMotion.moveFish(fishies, round);
 
-      assert.equal(-1 * initialVelocity, fish.velocity);
+      assert.equal(-round * initialVelocity, fish.velocity);
     });
 
     it ('should reverse direction two spaces during round 2', function() {
@@ -104,7 +105,7 @@ describe('CanvasMotion', function() {
 
       canvasMotion.moveFish(fishies, round);
 
-      assert.equal(-2 * initialVelocity, fish.velocity * round);
+      assert.equal(-round * initialVelocity, fish.velocity * round);
     });
 
     it ('should reverse direction three spacess during round 3', function() {
@@ -113,7 +114,25 @@ describe('CanvasMotion', function() {
 
       canvasMotion.moveFish(fishies, round);
 
-      assert.equal(-3 * initialVelocity, fish.velocity * round);
+      assert.equal(-round * initialVelocity, fish.velocity * round);
+    });
+  });
+
+  context('bullet moves vertically', function() {
+    var bullet  = new Bullet({}, boat);
+    var bullets = [];
+    bullets.push(bullet);
+
+    it ('should move bullet downward', function() {
+      var initialPosition = bullet.y;
+
+      canvasMotion.moveBullet(bullets);
+      assert.equal(bullet.y, initialPosition + 4);
+      assert.notEqual(bullet.y, initialPosition + 5);
+
+      canvasMotion.moveBullet(bullets);
+      canvasMotion.moveBullet(bullets);
+      assert.equal(bullet.y, initialPosition + 12);
     });
   });
 
