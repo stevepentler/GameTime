@@ -7,44 +7,47 @@ const Boat = require('../lib/boat');
 const collision = require('../lib/collision');
 
 describe('Collision detection', function() {
-  context('between a bullet and a fish', function() {
-    var boat = new Boat({});
 
-    xit('detects a collision', function() {
-      var fish = new Fish({x: 500, y: 100});
-      var bullet = new Bullet({}, boat);
-      bullet.shoot(700);
+  context('between a bullet and a fish', function() {
+    var boat    = new Boat({});
+    var fish    = new Fish({x: 500, y: 100});
+    var bullet  = new Bullet({}, boat);
+
+    it('detects a direct hit collision', function() {
       bullet.x = 500;
       bullet.y = 100;
-      console.log(fish)
-      console.log(bullet)
 
       assert.equal(true, collision(fish, bullet))
     });
 
-    xit('returns false if x coordinates do not match', function() {
-      var fish = new Fish({x: 500, y: 100});
-      var bullet = new Bullet({}, boat);
-      bullet.shoot(700);
-      bullet.x = -10000;
+    it('detects a slight overlap collision on x axis', function() {
+      bullet.x = 525;
       bullet.y = 100;
-      console.log(fish)
-      console.log(bullet)
 
-      assert.notEqual(true, collision(fish, bullet))
+      assert.equal(true, collision(fish, bullet))
     });
 
-    xit('returns false if y coordinates do not match', function() {
-      var fish = new Fish({x: 500, y: 100});
-      var bullet = new Bullet({}, boat);
-      bullet.shoot(700);
+    it('detects a slight overlap collision on y axis', function() {
+
       bullet.x = 500;
-      bullet.y = -10000;
-      console.log(fish)
-      console.log(bullet)
+      bullet.y = 94;
+
+      assert.equal(true, collision(fish, bullet))
+    });
+
+    it('returns not true if (x coordinate + width) does not overlap', function() {
+      bullet.x = 493;
+      bullet.y = 100;
 
       assert.notEqual(true, collision(fish, bullet))
     });
 
+    it('returns not true if (y coordinate + height) does not overlap', function() {
+      bullet.x = 500;
+      bullet.y = 93;
+
+      assert.notEqual(true, collision(fish, bullet))
+    });
   });
+
 });
