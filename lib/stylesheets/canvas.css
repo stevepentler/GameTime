@@ -16,6 +16,10 @@ canvas {
   text-shadow: 2px 2px black;
 }
 
+.black-shadow-2 {
+  text-shadow: 1px 1px black;
+}
+
 .shrimp-red {
   color: #7E2529;
 }
