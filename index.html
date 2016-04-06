@@ -20,9 +20,9 @@
           <h2 class="center title">Shrimpin' Ain't Easy</h2>
           <div class="card" style="padding:10px">
             <canvas id="game" tabindex="1" height=500 width=750 padding="30px"></canvas>
-              <span class="btn"> <-  ->: Move Boat</span>
-              <span class="btn">Spacebar: Drop Net</span>
-              <span class="btn">Enter: Begin Round</span>
+              <span id="round" class="btn">Round:</span>
+              <span id="timer" class="btn">Time:</span>
+              <span id="score" class="btn">Score:</span>
           </div>
         </div>
 
@@ -43,14 +43,6 @@
             <h1 id="game-status" class="title"></h1>
             
             <h5 id="continueOptions"></5>
-          </div>
-
-          <br>
-
-          <div class="card center">
-            <h4 id="round"></h4>
-            <h4 id="timer"></h4>
-            <h4 id="score"></h4>
           </div>
         </div>
       </div>
