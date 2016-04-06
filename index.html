@@ -16,19 +16,17 @@
   <body>
     <div class="game-view">
       <div class="row">
-        <br>
-      </div>
-      <div class="row">
-        <div class="col s7 center">
-          <h1 class="center custom-font shrimp-red black-shadow">Shrimpin' Ain't Easy</h1>
-          <canvas id="game" tabindex="1" height=700 width=1000></canvas>
-          <br>
-            <span class="btn"><-  -> : Move Boat</span>
-            <span class="btn">Spacebar: Drop Net</span>
-            <span class="btn">Enter: Begin Round</span>
+        <div class="col s8 center">
+          <h2 class="center title">Shrimpin' Ain't Easy</h2>
+          <div class="card" style="padding:10px">
+            <canvas id="game" tabindex="1" height=500 width=750 padding="30px"></canvas>
+              <span class="btn"><-  -> : Move Boat</span>
+              <span class="btn">Spacebar: Drop Net</span>
+              <span class="btn">Enter: Begin Round</span>
+          </div>
         </div>
 
-        <div class="col s5">
+        <div class="col s4">
           <div class="container">
             <h3 class="custom-font center">Leaderboard</h3>
             <table class="striped centered">
@@ -53,7 +51,7 @@
           <br>
 
           <div class="card center">
-            <h5 id="round"></h5>
+            <h4 id="round"></h4>
             <h4 id="timer"></h4>
             <h4 id="score"></h4>
           </div>
