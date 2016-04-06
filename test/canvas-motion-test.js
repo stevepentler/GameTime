@@ -90,15 +90,11 @@ describe('CanvasMotion', function() {
     var fishies = [];
     fishies.push(fish);
 
-<<<<<<< HEAD
     xit ('should reverse direction one space during round 1', function() {
       var round = 1;
       var initialPosition = fish.x
       console.log(canvasWidth)
       var initialVelocity = fish.velocity
-=======
-      fish.x = 500;
->>>>>>> master
 
       assert.equal(initialVelocity, fish.velocity);
 
@@ -115,12 +111,8 @@ describe('CanvasMotion', function() {
       assert.equal(fish.x, initialPosition + (2 * fish.velocity));
     });
 
-<<<<<<< HEAD
     xit ('should move three spaces during round 3', function() {
       var initialPosition = fish.x;
-=======
-      fish.x = 500;
->>>>>>> master
 
       assert.equal(fish.x, initialPosition)
       canvasMotion.moveFish(fishies, 3);
