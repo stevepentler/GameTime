@@ -3,7 +3,7 @@ canvas {
 }
 
 .btn {
-  font-size: 1.2em;
+  font-size: 2em;
   font-family: 'Kaushan Script', cursive;
   background-color: #7E2529;
 }
@@ -22,6 +22,10 @@ canvas {
 
 .shrimp-red {
   color: #7E2529;
+}
+
+div #instructions {
+  font-size: 1.2em;
 }
 
 .title {
