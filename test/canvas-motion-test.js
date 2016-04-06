@@ -1,11 +1,11 @@
 const chai = require('chai');
 const assert = chai.assert;
 
-const CanvasMotion = require('../lib/canvas-motion')
+const CanvasMotion = require('../lib/canvas-motion');
 const Boat         = require('../lib/boat');
 const Fish         = require('../lib/fish').Fish;
-const canvasWidth  = 1000;
-const canvasHeight = 700;
+const canvasWidth  = 750;
+const canvasHeight = 500;
 
 describe('CanvasMotion', function() {
   var canvasMotion = new CanvasMotion(canvasWidth, canvasHeight);
@@ -13,7 +13,7 @@ describe('CanvasMotion', function() {
 
   context('boat moves horizontally', function() {
     it ('should move boat left', function() {
-      var initialPosition = boat.x
+      var initialPosition = boat.x;
       assert.equal(boat.x, boat.x);
 
       canvasMotion.moveBoatLeft(boat);
@@ -90,11 +90,15 @@ describe('CanvasMotion', function() {
     var fishies = [];
     fishies.push(fish);
 
+<<<<<<< HEAD
     xit ('should reverse direction one space during round 1', function() {
       var round = 1;
       var initialPosition = fish.x
       console.log(canvasWidth)
       var initialVelocity = fish.velocity
+=======
+      fish.x = 500;
+>>>>>>> master
 
       assert.equal(initialVelocity, fish.velocity);
 
@@ -111,8 +115,12 @@ describe('CanvasMotion', function() {
       assert.equal(fish.x, initialPosition + (2 * fish.velocity));
     });
 
+<<<<<<< HEAD
     xit ('should move three spaces during round 3', function() {
       var initialPosition = fish.x;
+=======
+      fish.x = 500;
+>>>>>>> master
 
       assert.equal(fish.x, initialPosition)
       canvasMotion.moveFish(fishies, 3);

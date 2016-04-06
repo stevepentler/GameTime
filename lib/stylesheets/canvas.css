@@ -1,3 +1,39 @@
 canvas {
   background-color: #80B1E8;
 }
+
+.btn {
+  font-size: 1.2em;
+  font-family: 'Kaushan Script', cursive;
+  background-color: #7E2529;
+}
+
+.custom-font {
+  font-family: 'Indie Flower', cursive;
+}
+
+.black-shadow {
+  text-shadow: 2px 2px black;
+}
+
+.black-shadow-2 {
+  text-shadow: 1px 1px black;
+}
+
+.shrimp-red {
+  color: #7E2529;
+}
+
+.title {
+  color: #7E2529;
+  text-shadow: 2px 2px black;
+  font-family: 'Kaushan Script', cursive;
+  margin: 15px 0 -5px 0 ;
+}
+
+canvas #defaultCanvas0 {
+  outline: 3px solid magenta;
+  width: 0px !important;
+  height: 0px !important;
+
+}

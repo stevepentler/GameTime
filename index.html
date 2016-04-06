@@ -4,6 +4,7 @@
   <head>
     <title>Shrimpin' Ain't Easy</title>
     <meta charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css'>
     <link rel="stylesheet" type="text/css" href="./lib/stylesheets/canvas.css">
     <script type='text/javascript' src='./libraries/p5.min.js'></script>
@@ -15,68 +16,40 @@
   <body>
     <div class="game-view">
       <div class="row">
-        <br>
-        <h1><center>Shrimpin' Ain't Easy</center></h1>
-      </div>
-      <div class="row">
-        <div class="col s7 center">
-          <br>
-          <canvas id="game" tabindex="1" height=700 width=1000></canvas>
-        </div>
-
-        <div class="col s5">
-          <div class="container">
-            <h4>Leaderboard</h4>
-            <table class="striped">
-              <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Score</th>
-                </tr>
-              </thead>
-              <tbody class="table-body">
-
-              </tbody>
-            </table>
-          </div>
-
-          <br>
-
-          <div class="container">
-            <h4>How To Play</h4>
-            <h6>
-              Use the left and right arrow keys to move Forrest and Jenny
-              across the water and press spacebar to fire. Carefully time your
-              shot to catch as many shrimp as you can with a single cast. Ready
-              to fish? Click the ocean and press Enter to begin.
-            </h6>
-          </div>
-
-          <br>
-
-          <center>
-            <button class="btn start-game">Start New Game</button>
-          </center>
-
-          <br>
-
-          <div class="container">
-            <h1 id="game-status"></h1>
-          </div>
-          <div class="container">
-            <h4>Current Score</h4>
-            <h5 id="score"></h5>
-          </div>
-          <div class="container">
-            <h4>Current Round</h4>
-            <h5 id="round"></h5>
-          </div>
-          <div class="container">
-            <h4>Time Remaining</h4>
-            <h5 id="timer"></h5>
+        <div class="col s8 center">
+          <h2 class="center title">Shrimpin' Ain't Easy</h2>
+          <div class="card" style="padding:10px">
+            <canvas id="game" tabindex="1" height=500 width=750 padding="30px"></canvas>
+              <span class="btn"> <-  ->: Move Boat</span>
+              <span class="btn">Spacebar: Drop Net</span>
+              <span class="btn">Enter: Begin Round</span>
           </div>
         </div>
 
+        <div class="col s4">
+          <div class="container">
+            <br>
+            <h3 class="custom-font shrimp-red black-shadow-2 center">Previous Win</h3>
+            <h5 id="winning-scores" class="center"></h5>
+            <table class="striped centered">
+          </div>
+
+          <br>
+
+          <div class="card center custom-font">
+            <h1 id="game-status" class="title"></h1>
+          <br>
+            <h5 id="continueOptions"></5>
+          </div>
+
+          <br>
+
+          <div class="card center">
+            <h4 id="round"></h4>
+            <h4 id="timer"></h4>
+            <h4 id="score"></h4>
+          </div>
+        </div>
       </div>
     </div>
 
