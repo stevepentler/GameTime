@@ -18,6 +18,6 @@ function setup() {
 function draw() {
   level = amplitude.getLevel();
   var size = map(level, 0, 1, 1, 2);
-  amplitudeLevel = createElement('span', size);
+  amplitudeLevel = createElement('span hidden', size);
   console.log("size:" + size);
 }
