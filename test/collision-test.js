@@ -28,6 +28,7 @@ describe('Collision detection', function() {
     });
 
     it('detects a slight overlap collision on y axis', function() {
+
       bullet.x = 500;
       bullet.y = 94;
 
