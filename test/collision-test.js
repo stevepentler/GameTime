@@ -24,7 +24,7 @@ describe('Collision detection', function() {
       bullet.x = 525;
       bullet.y = 100;
 
-      assert.equal(true, collision(fish, bullet))
+      assert.equal(true, collision(fish, bullet));
     });
 
     it('detects a slight overlap collision on y axis', function() {
@@ -32,7 +32,7 @@ describe('Collision detection', function() {
       bullet.x = 500;
       bullet.y = 94;
 
-      assert.equal(true, collision(fish, bullet))
+      assert.equal(true, collision(fish, bullet));
     });
 
     it('returns not true if (x coordinate + width) does not overlap', function() {
@@ -46,7 +46,7 @@ describe('Collision detection', function() {
       bullet.x = 500;
       bullet.y = 93;
 
-      assert.notEqual(true, collision(fish, bullet))
+      assert.notEqual(true, collision(fish, bullet));
     });
   });
 
