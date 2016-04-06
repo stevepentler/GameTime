@@ -45,6 +45,16 @@ describe('Boat', function() {
       assert.equal(customBoat.height, 4);
       assert.equal(customBoat.velocity, 5);
     });
-  });
 
+    it ('should track score changes', function() {
+      var initialScore = boat.score;
+      boat.score++
+      assert.equal(boat.score, initialScore + 1);
+
+      boat.score++
+      assert.equal(boat.score, initialScore + 2);
+
+    });
+
+  });
 });
