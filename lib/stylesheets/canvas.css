@@ -45,9 +45,6 @@ div #instructions {
   margin: 15px 0 -5px 0 ;
 }
 
-canvas #defaultCanvas0 {
-  outline: 3px solid magenta;
-  width: 0px !important;
-  height: 0px !important;
-
+span.amplitudeLevel {
+  color:white;
 }
