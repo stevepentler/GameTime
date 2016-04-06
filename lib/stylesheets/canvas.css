@@ -2,14 +2,13 @@ canvas {
   background-color: #80B1E8;
 }
 
-body {
-  /*background-image: url("http://pics4.city-data.com/cpicc/cfiles67412.jpg");*/
-  /*background-size: cover;*/
-}
-
 .btn {
   font-size: 2em;
-  font-family: 'Kaushan Script', cursive;
+  font-family: 'Bree Serif', serif;
+  background-color: #7E2529;
+}
+
+.btn:hover {
   background-color: #7E2529;
 }
 
@@ -43,6 +42,11 @@ div #instructions {
   text-shadow: 2px 2px black;
   font-family: 'Kaushan Script', cursive;
   margin: 15px 0 -5px 0 ;
+}
+
+#start-button {
+  font-size: 1em;
+  margin-bottom: 20px;
 }
 
 span.amplitudeLevel {
