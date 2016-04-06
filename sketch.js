@@ -18,13 +18,12 @@ function setup() {
 
 function draw() {
   level = amplitude.getLevel();
-  var size = map(level, 0, 1, 1, 3);
+  var size = map(level, 0, 1, 1, 10);
   count++;
   if (count === 1) {
     amplitudeLevel = createElement('span', size).addClass('amplitudeLevel');
   } else {
     amplitudeLevel.html('');
     amplitudeLevel = createElement('span', size).addClass('amplitudeLevel');
-    // console.log("size:" + size);
   }
 }
