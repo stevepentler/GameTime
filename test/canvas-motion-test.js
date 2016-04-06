@@ -93,36 +93,36 @@ describe('CanvasMotion', function() {
   });
 
   context('fish reverses direction', function() {
-    var fish = new Fish({x: canvasWidth, y: 0, velocity: 1});
+    var round = 1;
+    var fish = new Fish({width: 0});
     var fishies = [];
     fishies.push(fish);
 
-    xit ('should reverse direction one space during round 1', function() {
-      var round = 1;
+    it ('should reverse direction at canvasWidth', function() {
+      fish.x = canvasWidth;
       var initialVelocity = fish.velocity;
 
       canvasMotion.moveFish(fishies, round, p5Amplitude);
-      // console.log("final" + fish.velocity);
 
-      assert.equal(round/2 * -initialVelocity, fish.velocity);
+      assert.equal(-initialVelocity, fish.velocity);
     });
 
-    it ('should reverse direction two spaces during round 2', function() {
-      var round = 2;
+    it ('should reverse direction if greater than canvasWidth', function() {
+      fish.x = canvasWidth + 100;
       var initialVelocity = fish.velocity;
 
       canvasMotion.moveFish(fishies, round, p5Amplitude);
 
-      assert.equal(round/2 * -initialVelocity, fish.velocity);
+      assert.equal(-initialVelocity, fish.velocity);
     });
 
-    xit ('should reverse direction three spacess during round 3', function() {
-      var round = 3;
+    it ('should reverse direction at left border', function() {
+      fish.x = -1;
       var initialVelocity = fish.velocity;
 
       canvasMotion.moveFish(fishies, round, p5Amplitude);
 
-      assert.equal(round/2 * -initialVelocity, fish.velocity);
+      assert.equal(-initialVelocity, fish.velocity);
     });
   });
 
