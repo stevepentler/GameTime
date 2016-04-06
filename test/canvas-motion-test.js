@@ -57,9 +57,9 @@ describe('CanvasMotion', function() {
 
     it ('should move one space during round 1', function() {
       var round = 1;
-      var initialPosition = fish.x
+      var initialPosition = fish.x;
 
-      assert.equal(fish.x, initialPosition)
+      assert.equal(fish.x, initialPosition);
       canvasMotion.moveFish(fishies, round);
 
       assert.equal(fish.x, initialPosition + fish.velocity);
@@ -68,7 +68,7 @@ describe('CanvasMotion', function() {
     it ('should move two spaces during round 2', function() {
       var initialPosition = fish.x;
 
-      assert.equal(fish.x, initialPosition)
+      assert.equal(fish.x, initialPosition);
       canvasMotion.moveFish(fishies, 2);
 
       assert.equal(fish.x, initialPosition + (2 * fish.velocity));
@@ -77,7 +77,7 @@ describe('CanvasMotion', function() {
     it ('should move three spaces during round 3', function() {
       var initialPosition = fish.x;
 
-      assert.equal(fish.x, initialPosition)
+      assert.equal(fish.x, initialPosition);
       canvasMotion.moveFish(fishies, 3);
 
       assert.equal(fish.x, initialPosition + (3 * fish.velocity));
@@ -92,9 +92,9 @@ describe('CanvasMotion', function() {
 
     xit ('should reverse direction one space during round 1', function() {
       var round = 1;
-      var initialPosition = fish.x
-      console.log(canvasWidth)
-      var initialVelocity = fish.velocity
+      var initialPosition = fish.x;
+      console.log(canvasWidth);
+      var initialVelocity = fish.velocity;
 
       assert.equal(initialVelocity, fish.velocity);
 
@@ -105,7 +105,7 @@ describe('CanvasMotion', function() {
     xit ('should move two spaces during round 2', function() {
       var initialPosition = fish.x;
 
-      assert.equal(fish.x, initialPosition)
+      assert.equal(fish.x, initialPosition);
       canvasMotion.moveFish(fishies, 2);
 
       assert.equal(fish.x, initialPosition + (2 * fish.velocity));
@@ -114,7 +114,7 @@ describe('CanvasMotion', function() {
     xit ('should move three spaces during round 3', function() {
       var initialPosition = fish.x;
 
-      assert.equal(fish.x, initialPosition)
+      assert.equal(fish.x, initialPosition);
       canvasMotion.moveFish(fishies, 3);
 
       assert.equal(fish.x, initialPosition + (3 * fish.velocity));
