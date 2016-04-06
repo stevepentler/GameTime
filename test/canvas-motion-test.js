@@ -52,36 +52,42 @@ describe('CanvasMotion', function() {
   });
 
   context('fish moves with positive velocity', function() {
-    var fish = new Fish({x: 1, y: 0, velocity: 1});
-    var fishies = [];
+    var p5Amplitude = 1;
+    var fish        = new Fish({x: 1, y: 0, velocity: 1});
+    var fishies     = [];
     fishies.push(fish);
 
     it ('should move one space during round 1', function() {
       var round = 1;
       var initialPosition = fish.x;
+      var motion = (fish.velocity * round/2 * p5Amplitude);
 
       assert.equal(fish.x, initialPosition);
-      canvasMotion.moveFish(fishies, round);
+      canvasMotion.moveFish(fishies, round, p5Amplitude);
 
-      assert.equal(fish.x, initialPosition + fish.velocity);
+      assert.equal(fish.x, initialPosition + motion);
     });
 
     it ('should move two spaces during round 2', function() {
+      var round = 2;
       var initialPosition = fish.x;
+      var motion = (fish.velocity * round/2 * p5Amplitude);
 
       assert.equal(fish.x, initialPosition);
-      canvasMotion.moveFish(fishies, 2);
+      canvasMotion.moveFish(fishies, round, p5Amplitude);
 
-      assert.equal(fish.x, initialPosition + (2 * fish.velocity));
+      assert.equal(fish.x, initialPosition + motion);
     });
 
     it ('should move three spaces during round 3', function() {
+      var round = 3;
       var initialPosition = fish.x;
+      var motion = (fish.velocity * round/2 * p5Amplitude);
 
       assert.equal(fish.x, initialPosition);
-      canvasMotion.moveFish(fishies, 3);
+      canvasMotion.moveFish(fishies, round, p5Amplitude);
 
-      assert.equal(fish.x, initialPosition + (3 * fish.velocity));
+      assert.equal(fish.x, initialPosition + motion);
     });
   });
 
