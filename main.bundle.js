@@ -296,7 +296,6 @@
 	var amplitude = __webpack_require__(5);
 
 	function Fish(options) {
-	  options = options || {};
 	  this.x = options.x || 0;
 	  this.y = options.y || 400;
 	  this.width = options.width || 50;
