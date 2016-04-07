@@ -70,17 +70,17 @@
 	var Bullet = __webpack_require__(3);
 	var bullets = [];
 	var fishies = __webpack_require__(4).fishies;
-	var collision = __webpack_require__(6);
+	var collision = __webpack_require__(5);
 	var boat = new Boat({ x: canvasWidth / 2, y: 25, width: 200, height: 150, velocity: 5, score: 0 });
 	var gameRunning = false;
 	var round = 1;
-	var CanvasPainter = __webpack_require__(7);
+	var CanvasPainter = __webpack_require__(6);
 	var canvasPainter = new CanvasPainter(context);
-	var CanvasMotion = __webpack_require__(9);
+	var CanvasMotion = __webpack_require__(8);
 	var canvasMotion = new CanvasMotion(canvasWidth, canvasHeight);
 	var winsCounter = 0;
 
-	var $ = __webpack_require__(10);
+	var $ = __webpack_require__(9);
 	var p5Amplitude;
 	var $round = $('#round');
 	var $score = $('#score');
@@ -170,15 +170,15 @@
 	}
 
 	function nextRound() {
-	  if (boat.score >= 2500 && round === 1) {
+	  if (boat.score >= 3000 && round === 1) {
 	    round++;
 	    advanceRound();
 	    resetRound();
-	  } else if (boat.score >= 5000 && round === 2) {
+	  } else if (boat.score >= 6000 && round === 2) {
 	    round++;
 	    advanceRound();
 	    resetRound(round);
-	  } else if (boat.score >= 7500 && round === 3) {
+	  } else if (boat.score >= 9000 && round === 3) {
 	    playerWins();
 	    return winsCounter++;
 	  } else {
@@ -289,11 +289,9 @@
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
-
-	var amplitude = __webpack_require__(5);
+	"use strict";
 
 	function Fish(options) {
 	  this.x = options.x || 0;
@@ -330,41 +328,6 @@
 /* 5 */
 /***/ function(module, exports) {
 
-	'use strict';
-
-	var amplitude,
-	    level,
-	    song,
-	    speed,
-	    amplitudeLevel,
-	    count = 0;
-
-	function preload() {
-	  song = loadSound('assets/FortunateSon.mp3');
-	}
-
-	function setup() {
-	  createCanvas(0, 0);
-	  song.play();
-	  amplitude = new p5.Amplitude();
-	}
-
-	function draw() {
-	  level = amplitude.getLevel();
-	  var size = map(level, 0, 1, 1, 30);
-	  count++;
-	  if (count === 1) {
-	    amplitudeLevel = createElement('span', size).addClass('amplitudeLevel');
-	  } else {
-	    amplitudeLevel.html('');
-	    amplitudeLevel = createElement('span', size).addClass('amplitudeLevel');
-	  }
-	}
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
 	"use strict";
 
 	function collision(fish, bullet) {
@@ -392,12 +355,12 @@
 	module.exports = collision;
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var ImageRenderer = __webpack_require__(8);
+	var ImageRenderer = __webpack_require__(7);
 	var imageRenderer = new ImageRenderer();
 	var images = imageRenderer.init();
 
@@ -444,7 +407,7 @@
 	module.exports = CanvasPainter;
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -475,12 +438,12 @@
 	module.exports = ImageRenderer;
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports) {
 
 	"use strict";
 
-	function CanvasMotion(canvasWidth, canvasHeight, p5Amplitude) {
+	function CanvasMotion(canvasWidth, canvasHeight) {
 	  this.canvasWidth = canvasWidth;
 	  this.canvasHeight = canvasHeight;
 	}
@@ -547,7 +510,7 @@
 	module.exports = CanvasMotion;
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
