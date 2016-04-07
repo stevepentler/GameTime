@@ -66,23 +66,29 @@
 	var canvasWidth = canvas.width;
 	var canvasHeight = canvas.height;
 
-	var $ = __webpack_require__(2);
-
-	var Boat = __webpack_require__(3);
-	var Bullet = __webpack_require__(4);
+	var Boat = __webpack_require__(2);
+	var Bullet = __webpack_require__(3);
 	var bullets = [];
-	var fishies = __webpack_require__(5).fishies;
-	var collision = __webpack_require__(7);
+	var fishies = __webpack_require__(4).fishies;
+	var collision = __webpack_require__(6);
 	var boat = new Boat({ x: canvasWidth / 2, y: 25, width: 200, height: 150, velocity: 5, score: 0 });
 	var gameRunning = false;
 	var round = 1;
-	var CanvasPainter = __webpack_require__(8);
+	var CanvasPainter = __webpack_require__(7);
 	var canvasPainter = new CanvasPainter(context);
-	var CanvasMotion = __webpack_require__(10);
+	var CanvasMotion = __webpack_require__(9);
 	var canvasMotion = new CanvasMotion(canvasWidth, canvasHeight);
 	var winsCounter = 0;
 
-	canvas.addEventListener('keydown', function (key) {
+	var $ = __webpack_require__(10);
+	var p5Amplitude;
+	var $round = $('#round');
+	var $score = $('#score');
+	var $gameStatus = $('#game-status');
+	var $winningScores = $('#winning-scores');
+	var $continueOptions = $('#continueOptions');
+
+	$(document).on('keydown', function (key) {
 	  if (key.which === 37) {
 	    canvasMotion.moveBoatLeft(boat);
 	  } else if (key.which === 39) {
@@ -92,16 +98,8 @@
 	    addBullet(bullets);
 	  } else if (key.which === 13 && !gameRunning) {
 	    beginScoring();
-	  } else if (key.which === 71 && !gameRunning) {
-	    new Game();
 	  }
 	});
-
-	var $round = $('#round');
-	var $score = $('#score');
-	var $gameStatus = $('#game-status');
-	var $winningScores = $('#winning-scores');
-	var $continueOptions = $('#continueOptions');
 
 	function drawObjects() {
 	  canvasPainter.drawOcean();
@@ -110,10 +108,10 @@
 	  canvasPainter.drawBullet(bullets);
 	}
 
-	function moveObjects() {
-	  canvasMotion.moveFish(fishies, round);
+	var moveObjects = function moveObjects(p5Amplitude) {
+	  canvasMotion.moveFish(fishies, round, p5Amplitude);
 	  canvasMotion.moveBullet(bullets);
-	}
+	};
 
 	function addBullet(bullets) {
 	  if (bullets.length === 0) {
@@ -158,7 +156,7 @@
 	}
 
 	function gameTimer() {
-	  var seconds_left = 8;
+	  var seconds_left = 20;
 	  var interval = setInterval(function () {
 	    document.getElementById('timer').innerHTML = --seconds_left + " seconds";
 	    if (seconds_left <= 0) {
@@ -172,15 +170,15 @@
 	}
 
 	function nextRound() {
-	  if (boat.score >= 500 && round === 1) {
+	  if (boat.score >= 2500 && round === 1) {
 	    round++;
 	    advanceRound();
 	    resetRound();
-	  } else if (boat.score >= 500 && round === 2) {
+	  } else if (boat.score >= 5000 && round === 2) {
 	    round++;
 	    advanceRound();
 	    resetRound(round);
-	  } else if (boat.score >= 500 && round === 3) {
+	  } else if (boat.score >= 7500 && round === 3) {
 	    playerWins();
 	    return winsCounter++;
 	  } else {
@@ -196,7 +194,7 @@
 	function resetRound(round) {
 	  fishies = [];
 	  startGame(round);
-	  fishies = __webpack_require__(5).fishies;
+	  fishies = __webpack_require__(4).fishies;
 	}
 
 	function clearScoreAndRound() {
@@ -210,7 +208,7 @@
 	  $continueOptions.text('Press Enter to play again!');
 	  sessionStorage.setItem(winsCounter, boat.score);
 	  var wins = sessionStorage;
-	  $winningScores.prepend().text(wins[winsCounter]);
+	  $winningScores.prepend().html("Last Score: " + wins[winsCounter]);
 	  clearScoreAndRound();
 	  displayRound();
 	  resetRound();
@@ -224,7 +222,7 @@
 	}
 
 	function displayScore() {
-	  $score.text("Current Score: " + boat.score.toString());
+	  $score.text("Score: " + boat.score.toString());
 	}
 
 	function displayRound() {
@@ -243,9 +241,10 @@
 	}
 
 	var startGame = function startGame() {
+	  p5Amplitude = $('.amplitudeLevel').text();
 	  clearScreen();
 	  drawObjects();
-	  moveObjects();
+	  moveObjects(p5Amplitude);
 	  checkForCollision();
 	};
 
@@ -257,6 +256,300 @@
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	function Boat(options) {
+	  options = options || {};
+	  this.x = options.x || 500;
+	  this.y = options.y || 25;
+	  this.width = options.width || 10;
+	  this.height = options.height || 10;
+	  this.velocity = options.velocity || 5;
+	  this.score = 0;
+	}
+
+	module.exports = Boat;
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	function Bullet(options, boat) {
+	  options = options || {};
+	  this.x = boat.x - 5;
+	  this.y = boat.y + 80;
+	  this.width = options.width || 6;
+	  this.height = options.height || 6;
+	  this.velocity = options.velocity || 4;
+	}
+
+	module.exports = Bullet;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var amplitude = __webpack_require__(5);
+
+	function Fish(options) {
+	  options = options || {};
+	  this.x = options.x || 0;
+	  this.y = options.y || 400;
+	  this.width = options.width || 50;
+	  this.height = options.height || 25;
+	  this.velocity = options.velocity || 0.40;
+	  this.round = options.round || 1;
+	}
+
+	var fishies = [];
+
+	var fish0 = new Fish({ x: 80, y: 160, velocity: 0.35 });
+	var fish1 = new Fish({ x: 0, y: 200, velocity: 0.35 });
+	var fish2 = new Fish({ x: 200, y: 220, velocity: 0.30 });
+	var fish3 = new Fish({ x: 40, y: 250, velocity: 0.45 });
+	var fish4 = new Fish({ x: 60, y: 265, velocity: 0.45 });
+	var fish5 = new Fish({ x: 75, y: 280, velocity: 0.45 });
+	var fish6 = new Fish({ x: 100, y: 310, velocity: 0.55 });
+	var fish7 = new Fish({ x: 210, y: 350, velocity: -0.40 });
+	var fish8 = new Fish({ x: 210, y: 400, velocity: -0.35 });
+	var fish9 = new Fish({ x: 550, y: 420, velocity: 0.35 });
+	var fish10 = new Fish({ x: 300, y: 430, velocity: 0.35 });
+	var fish11 = new Fish({ x: 700, y: 460, velocity: -0.35 });
+
+	fishies.push(fish0, fish1, fish2, fish3, fish4, fish5, fish6, fish7, fish8, fish9, fish10, fish11);
+
+	module.exports = {
+	  Fish: Fish,
+	  fishies: fishies
+	};
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var amplitude,
+	    level,
+	    song,
+	    speed,
+	    amplitudeLevel,
+	    count = 0;
+
+	function preload() {
+	  song = loadSound('assets/FortunateSon.mp3');
+	}
+
+	function setup() {
+	  createCanvas(0, 0);
+	  song.play();
+	  amplitude = new p5.Amplitude();
+	}
+
+	function draw() {
+	  level = amplitude.getLevel();
+	  var size = map(level, 0, 1, 1, 30);
+	  count++;
+	  if (count === 1) {
+	    amplitudeLevel = createElement('span', size).addClass('amplitudeLevel');
+	  } else {
+	    amplitudeLevel.html('');
+	    amplitudeLevel = createElement('span', size).addClass('amplitudeLevel');
+	  }
+	}
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	function collision(fish, bullet) {
+	  if (xCollision(fish, bullet) && yCollision(fish, bullet)) {
+	    return true;
+	  }
+	}
+
+	function xCollision(fish, bullet) {
+	  if (fish.x <= bullet.x && bullet.x + bullet.width <= fish.x + fish.width) {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	}
+
+	function yCollision(fish, bullet) {
+	  if (fish.y <= bullet.y + bullet.height && bullet.y <= fish.y + fish.height) {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	}
+
+	module.exports = collision;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var ImageRenderer = __webpack_require__(8);
+	var imageRenderer = new ImageRenderer();
+	var images = imageRenderer.init();
+
+	function CanvasPainter(context) {
+	  this.context = context;
+	}
+
+	CanvasPainter.prototype = {
+	  drawFish: function drawFish(fishies) {
+	    var self = this;
+	    fishies.forEach(function (fish) {
+	      direction(fish, self.context);
+	    });
+	  },
+
+	  drawBullet: function drawBullet(bullets) {
+	    var self = this;
+	    bullets.forEach(function (bullet) {
+	      self.context.drawImage(images.bullet, bullet.x, bullet.y);
+	      return bullet;
+	    });
+	  },
+
+	  drawBoat: function drawBoat(boat) {
+	    this.context.drawImage(images.boatImage, boat.x, boat.y);
+	  },
+
+	  drawOcean: function drawOcean() {
+	    this.context.drawImage(images.ocean, 0, 135);
+	  }
+
+	};
+
+	function direction(fish, context) {
+	  if (fish.velocity > 0) {
+	    context.drawImage(images.smallShrimp, fish.x, fish.y);
+	    return fish;
+	  } else {
+	    context.drawImage(images.smallShrimpReverse, fish.x, fish.y);
+	    return fish;
+	  }
+	}
+
+	module.exports = CanvasPainter;
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	function ImageRenderer() {
+	  this.images = {
+	    boatImage: new Image(),
+	    smallShark: new Image(),
+	    smallSharkReverse: new Image(),
+	    smallShrimp: new Image(),
+	    smallShrimpReverse: new Image(),
+	    bullet: new Image(),
+	    ocean: new Image()
+	  };
+	}
+
+	ImageRenderer.prototype.init = function () {
+	  this.images.boatImage.src = 'assets/Jenny.png';
+	  this.images.smallShark.src = 'assets/small-shark.png';
+	  this.images.smallSharkReverse.src = 'assets/small-shark-reverse.png';
+	  this.images.smallShrimp.src = 'assets/small-shrimp.png';
+	  this.images.smallShrimpReverse.src = 'assets/small-shrimp-reverse.png';
+	  this.images.bullet.src = 'assets/fishing_net.png';
+	  this.images.ocean.src = 'assets/ocean.png';
+	  return this.images;
+	};
+
+	module.exports = ImageRenderer;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	function CanvasMotion(canvasWidth, canvasHeight, p5Amplitude) {
+	  this.canvasWidth = canvasWidth;
+	  this.canvasHeight = canvasHeight;
+	}
+
+	CanvasMotion.prototype = {
+	  moveFish: function moveFish(fishies, round, p5Amplitude) {
+	    var self = this;
+	    fishies.forEach(function (fish) {
+	      moveFishX(fish, round, p5Amplitude);
+	      reverseFishDirection(fish, self.canvasWidth);
+	    });
+	  },
+
+	  moveBullet: function moveBullet(bullets) {
+	    var self = this;
+	    bullets.forEach(function (bullet) {
+	      moveBulletY(bullet, self.canvasHeight);
+	    });
+	  },
+
+	  moveBoatLeft: function moveBoatLeft(boat) {
+	    _moveBoatLeft(boat);
+	  },
+
+	  moveBoatRight: function moveBoatRight(boat, canvasWidth) {
+	    _moveBoatRight(boat, canvasWidth);
+	  }
+	};
+
+	function moveFishX(fish, round, p5Amplitude) {
+	  fish.x += fish.velocity * round / 2 * p5Amplitude;
+	  return fish;
+	}
+
+	function reverseFishDirection(fish, canvasWidth) {
+	  if (fish.x + fish.width >= canvasWidth || fish.x <= 0) {
+	    fish.velocity = -1 * fish.velocity;
+	    return fish;
+	  }
+	}
+
+	function moveBulletY(bullet, canvasHeight) {
+	  if (bullet.y < canvasHeight) {
+	    bullet.y += bullet.velocity;
+	    return bullet;
+	  }
+	}
+
+	function _moveBoatLeft(boat) {
+	  if (boat.x > 15) {
+	    boat.x -= boat.velocity;
+	    return boat;
+	  }
+	}
+
+	function _moveBoatRight(boat, canvasWidth) {
+	  if (boat.x + boat.width < canvasWidth) {
+	    boat.x += boat.velocity;
+	    return boat;
+	  }
+	}
+
+	module.exports = CanvasMotion;
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10102,287 +10395,6 @@
 	return jQuery;
 	}));
 
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	function Boat(options) {
-	  options = options || {};
-	  this.x = options.x || 500;
-	  this.y = options.y || 25;
-	  this.width = options.width || 10;
-	  this.height = options.height || 10;
-	  this.velocity = options.velocity || 5;
-	  this.score = 0;
-	}
-
-	module.exports = Boat;
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	function Bullet(options, boat) {
-	  options = options || {};
-	  this.x = boat.x - 5;
-	  this.y = boat.y + 80;
-	  this.width = options.width || 6;
-	  this.height = options.height || 6;
-	  this.velocity = options.velocity || 4;
-	}
-
-	module.exports = Bullet;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var amplitude = __webpack_require__(6);
-
-	function Fish(options) {
-	  options = options || {};
-	  this.x = options.x || 0;
-	  this.y = options.y || 400;
-	  this.width = options.width || 50;
-	  this.height = options.height || 25;
-	  this.velocity = options.velocity || 1;
-	  this.round = options.round || 1;
-	}
-
-	var fishies = [];
-
-	var fish0 = new Fish({ x: 80, y: 160, velocity: 1.75 });
-	var fish1 = new Fish({ x: 0, y: 200, velocity: 1.5 });
-	var fish2 = new Fish({ x: 200, y: 220 });
-	var fish3 = new Fish({ x: 40, y: 250, velocity: 2 });
-	var fish4 = new Fish({ x: 60, y: 265, velocity: 2 });
-	var fish5 = new Fish({ x: 75, y: 280, velocity: 2 });
-	var fish6 = new Fish({ x: 100, y: 310 });
-	var fish7 = new Fish({ x: 210, y: 350, velocity: -1 });
-	var fish8 = new Fish({ x: 210, y: 400, velocity: -1.1 });
-	var fish9 = new Fish({ x: 550, y: 420, velocity: 2.5 });
-	var fish10 = new Fish({ x: 300, y: 450, velocity: 3 });
-	var fish11 = new Fish({ x: 700, y: 480, velocity: -3.25 });
-
-	fishies.push(fish0, fish1, fish2, fish3, fish4, fish5, fish6, fish7, fish8, fish9, fish10, fish11);
-
-	module.exports = {
-	  Fish: Fish,
-	  fishies: fishies
-	};
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var amplitude, level, song, speed;
-
-	function preload() {
-	  song = loadSound('/assets/FortunateSon.mp3');
-	}
-
-	function setup() {
-	  createCanvas(0, 0);
-	  song.play();
-	  peaks = song.getPeaks([width]);
-	  amplitude = new p5.Amplitude();
-	  level = amplitude.getLevel();
-	}
-
-	module.exports = level;
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	function collision(fish, bullet) {
-	  if (xCollision(fish, bullet) && yCollision(fish, bullet)) {
-	    return true;
-	  }
-	}
-
-	function xCollision(fish, bullet) {
-	  if (fish.x <= bullet.x && bullet.x + bullet.width <= fish.x + fish.width) {
-	    return true;
-	  } else {
-	    return false;
-	  }
-	}
-
-	function yCollision(fish, bullet) {
-	  if (fish.y <= bullet.y + bullet.height && bullet.y <= fish.y + fish.height) {
-	    return true;
-	  } else {
-	    return false;
-	  }
-	}
-
-	module.exports = collision;
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var ImageRenderer = __webpack_require__(9);
-	var imageRenderer = new ImageRenderer();
-	var images = imageRenderer.init();
-
-	function CanvasPainter(context) {
-	  this.context = context;
-	}
-
-	CanvasPainter.prototype = {
-	  drawFish: function drawFish(fishies) {
-	    var self = this;
-	    fishies.forEach(function (fish) {
-	      direction(fish, self.context);
-	    });
-	  },
-
-	  drawBullet: function drawBullet(bullets) {
-	    var self = this;
-	    bullets.forEach(function (bullet) {
-	      self.context.drawImage(images.bullet, bullet.x, bullet.y);
-	      return bullet;
-	    });
-	  },
-
-	  drawBoat: function drawBoat(boat) {
-	    this.context.drawImage(images.boatImage, boat.x, boat.y);
-	  },
-
-	  drawOcean: function drawOcean() {
-	    this.context.drawImage(images.ocean, 0, 135);
-	  }
-
-	};
-
-	function direction(fish, context) {
-	  if (fish.velocity > 0) {
-	    context.drawImage(images.smallShrimp, fish.x, fish.y);
-	    return fish;
-	  } else {
-	    context.drawImage(images.smallShrimpReverse, fish.x, fish.y);
-	    return fish;
-	  }
-	}
-
-	module.exports = CanvasPainter;
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	function ImageRenderer() {
-	  this.images = {
-	    boatImage: new Image(),
-	    smallShark: new Image(),
-	    smallSharkReverse: new Image(),
-	    smallShrimp: new Image(),
-	    smallShrimpReverse: new Image(),
-	    bullet: new Image(),
-	    ocean: new Image()
-	  };
-	}
-
-	ImageRenderer.prototype.init = function () {
-	  this.images.boatImage.src = 'assets/Jenny.png';
-	  this.images.smallShark.src = 'assets/small-shark.png';
-	  this.images.smallSharkReverse.src = 'assets/small-shark-reverse.png';
-	  this.images.smallShrimp.src = 'assets/small-shrimp.png';
-	  this.images.smallShrimpReverse.src = 'assets/small-shrimp-reverse.png';
-	  this.images.bullet.src = 'assets/fishing_net.png';
-	  this.images.ocean.src = 'assets/ocean.png';
-	  return this.images;
-	};
-
-	module.exports = ImageRenderer;
-
-/***/ },
-/* 10 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	function CanvasMotion(canvasWidth, canvasHeight) {
-	  this.canvasWidth = canvasWidth;
-	  this.canvasHeight = canvasHeight;
-	}
-
-	CanvasMotion.prototype = {
-	  moveFish: function moveFish(fishies, round) {
-	    var self = this;
-	    fishies.forEach(function (fish) {
-	      moveFishX(fish, round);
-	      reverseFishDirection(fish, self.canvasWidth);
-	    });
-	  },
-
-	  moveBullet: function moveBullet(bullets) {
-	    var self = this;
-	    bullets.forEach(function (bullet) {
-	      moveBulletY(bullet, self.canvasHeight);
-	    });
-	  },
-
-	  moveBoatLeft: function moveBoatLeft(boat) {
-	    _moveBoatLeft(boat);
-	  },
-
-	  moveBoatRight: function moveBoatRight(boat, canvasWidth) {
-	    _moveBoatRight(boat, canvasWidth);
-	  }
-	};
-
-	function moveFishX(fish, round) {
-	  fish.x += fish.velocity * round;
-	  return fish;
-	}
-
-	function reverseFishDirection(fish, canvasWidth) {
-	  if (fish.x + fish.width >= canvasWidth || fish.x <= 0) {
-	    fish.velocity = -1 * fish.velocity;
-	    return fish;
-	  }
-	}
-
-	function moveBulletY(bullet, canvasHeight) {
-	  if (bullet.y < canvasHeight) {
-	    bullet.y += bullet.velocity;
-	    return bullet;
-	  }
-	}
-
-	function _moveBoatLeft(boat) {
-	  if (boat.x > 15) {
-	    boat.x -= boat.velocity;
-	    return boat;
-	  }
-	}
-
-	function _moveBoatRight(boat, canvasWidth) {
-	  if (boat.x + boat.width < canvasWidth) {
-	    boat.x += boat.velocity;
-	    return boat;
-	  }
-	}
-
-	module.exports = CanvasMotion;
 
 /***/ }
 /******/ ]);
