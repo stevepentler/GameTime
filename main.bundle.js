@@ -261,7 +261,6 @@
 	"use strict";
 
 	function Boat(options) {
-	  options = options || {};
 	  this.x = options.x || 500;
 	  this.y = options.y || 25;
 	  this.width = options.width || 10;
@@ -279,7 +278,6 @@
 	"use strict";
 
 	function Bullet(options, boat) {
-	  options = options || {};
 	  this.x = boat.x - 5;
 	  this.y = boat.y + 80;
 	  this.width = options.width || 6;
@@ -377,7 +375,7 @@
 	}
 
 	function xCollision(fish, bullet) {
-	  if (fish.x <= bullet.x && bullet.x + bullet.width <= fish.x + fish.width) {
+	  if (fish.x <= bullet.x && bullet.x <= fish.x + fish.width || bullet.x <= fish.x && fish.x <= bullet.x + bullet.width) {
 	    return true;
 	  } else {
 	    return false;
@@ -385,7 +383,7 @@
 	}
 
 	function yCollision(fish, bullet) {
-	  if (fish.y <= bullet.y + bullet.height && bullet.y <= fish.y + fish.height) {
+	  if (fish.y <= bullet.y && bullet.y <= fish.y + fish.height || bullet.y <= fish.y && fish.y <= bullet.y + bullet.height) {
 	    return true;
 	  } else {
 	    return false;
@@ -514,7 +512,8 @@
 	};
 
 	function moveFishX(fish, round, p5Amplitude) {
-	  fish.x += fish.velocity * round / 2 * p5Amplitude;
+	  var roundMultiplier = round / 2;
+	  fish.x += fish.velocity * roundMultiplier * p5Amplitude;
 	  return fish;
 	}
 
@@ -553,7 +552,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * jQuery JavaScript Library v2.2.2
+	 * jQuery JavaScript Library v2.2.3
 	 * http://jquery.com/
 	 *
 	 * Includes Sizzle.js
@@ -563,7 +562,7 @@
 	 * Released under the MIT license
 	 * http://jquery.org/license
 	 *
-	 * Date: 2016-03-17T17:51Z
+	 * Date: 2016-04-05T19:26Z
 	 */
 
 	(function( global, factory ) {
@@ -619,7 +618,7 @@
 
 
 	var
-		version = "2.2.2",
+		version = "2.2.3",
 
 		// Define a local copy of jQuery
 		jQuery = function( selector, context ) {
@@ -10029,7 +10028,7 @@
 			// If it fails, this function gets "jqXHR", "status", "error"
 			} ).always( callback && function( jqXHR, status ) {
 				self.each( function() {
-					callback.apply( self, response || [ jqXHR.responseText, status, jqXHR ] );
+					callback.apply( this, response || [ jqXHR.responseText, status, jqXHR ] );
 				} );
 			} );
 		}

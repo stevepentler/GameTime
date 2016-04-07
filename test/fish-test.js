@@ -25,7 +25,7 @@ describe('Fish', function() {
     });
 
     it ('should assign a default velocity', function() {
-      assert.equal(fish.velocity, 1);
+      assert.equal(fish.velocity, 0.40);
     });
 
     it ('should assign a default round', function() {
