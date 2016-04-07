@@ -22,7 +22,7 @@ The hurrican has passed, but *"people still need them shrimps for shrimp cocktai
 3. If you win round 3, Bubba will tell you all his recipes!
 
 ## Features/Challenges
-- Integrating p5 processing (p5, p5.sound, p5.dom). See this [gist]() to get a better understanding of our implementation.
+- Integrating p5 processing (p5, p5.sound, p5.dom). See this [gist](https://gist.github.com/stevepentler/99d89ad4ef79b9fae0dd628961e7bbd7) to get a better understanding of our implementation.
 - Finishing our first JavaScript project!
 
 ## To Run Locally
