@@ -10,22 +10,38 @@ describe('Collision detection', function() {
 
   context('between a bullet and a fish', function() {
     var boat    = new Boat({});
-    var fish    = new Fish({x: 500, y: 100});
+    var fish    = new Fish({});
     var bullet  = new Bullet({}, boat);
 
     it('detects a direct hit collision', function() {
       bullet.x = 500;
+      fish.x = 500;
       bullet.y = 100;
+      fish.y = 100;
 
       assert.equal(true, collision(fish, bullet));
     });
 
-    it('detects a slight overlap collision on x axis', function() {
+    it('detects collision: fish x + width equals bullet x', function() {
+      fish.x = 500;
+      fish.width = 25;
       bullet.x = 525;
       bullet.y = 100;
+      fish.y = 100;
 
       assert.equal(true, collision(fish, bullet));
     });
+
+    it('detects collision: fish x + width greater than bullet x', function() {
+      fish.x = 500;
+      fish.width = 50;
+      bullet.x = 525;
+      bullet.y = 100;
+      fish.y = 100;
+
+      assert.equal(true, collision(fish, bullet));
+    });
+
 
     it('detects a slight overlap collision on y axis', function() {
 
