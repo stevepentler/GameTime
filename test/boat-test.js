@@ -55,10 +55,10 @@ describe('Boat', function() {
 
     it ('should track score changes', function() {
       var initialScore = boat.score;
-      boat.score++
+      boat.score++;
       assert.equal(boat.score, initialScore + 1);
 
-      boat.score++
+      boat.score++;
       assert.equal(boat.score, initialScore + 2);
     });
 

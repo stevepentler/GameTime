@@ -93,9 +93,9 @@ describe('Collision detection', function() {
     });
 
     it('returns false if x coordinates do not overlap, y overlaps', function() {
-      fish.x = 0
+      fish.x = 0;
       bullet.x = 1000;
-      fish.width = 25; 
+      fish.width = 25;
       bullet.width = 25;
       fish.y = 1000;
       bullet.y = 1000;
@@ -106,7 +106,7 @@ describe('Collision detection', function() {
     it('returns false if y coordinates do not overlap, x overlaps', function() {
       fish.x = 100;
       bullet.x = 100;
-      fish.height = 25; 
+      fish.height = 25;
       bullet.height = 25;
       fish.y = 0;
       bullet.y = 1000;
