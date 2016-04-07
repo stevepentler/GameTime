@@ -22,7 +22,7 @@ describe('Collision detection', function() {
       assert.equal(true, collision(fish, bullet));
     });
 
-    it('detects collision: fish x + width equals bullet x', function() {
+    it('detects X collision: bullet x = fish x + width', function() {
       fish.x = 500;
       fish.width = 25;
       bullet.x = 525;
@@ -32,7 +32,7 @@ describe('Collision detection', function() {
       assert.equal(true, collision(fish, bullet));
     });
 
-    it('detects collision: fish x + width greater than bullet x', function() {
+    it('detects X collision: bullet x between fish x + width', function() {
       fish.x = 500;
       fish.width = 50;
       bullet.x = 525;
@@ -42,7 +42,7 @@ describe('Collision detection', function() {
       assert.equal(true, collision(fish, bullet));
     });
 
-    it('detects collision: very wide fish', function() {
+    it('detects X collision: very wide fish', function() {
       fish.x = 0;
       fish.width = 1000;
       bullet.x = 500;
@@ -52,7 +52,7 @@ describe('Collision detection', function() {
       assert.equal(true, collision(fish, bullet));
     });
 
-    it('detects collision: very wide bullet', function() {
+    it('detects X collision: very wide bullet', function() {
       fish.x = 500;
       bullet.x = 0;
       bullet.width = 1000;
@@ -62,24 +62,58 @@ describe('Collision detection', function() {
       assert.equal(true, collision(fish, bullet));
     });
 
-    it('detects a slight overlap collision on y axis', function() {
+    // it('detects a slight overlap collision on y axis', function() {
 
-      bullet.x = 500;
-      bullet.y = 94;
+    //   bullet.x = 500;
+    //   bullet.y = 94;
+
+    //   assert.equal(true, collision(fish, bullet));
+    // });
+
+    // xit('returns not true if (x coordinate + width) does not overlap', function() {
+    //   bullet.x = 493;
+    //   bullet.y = 100;
+
+    //   assert.notEqual(true, collision(fish, bullet));
+    // });
+
+    it('detects y collision: bullet y = fish y + height', function() {
+      fish.y = 500;
+      fish.height = 25;
+      bullet.y = 525;
+      bullet.x = 100;
+      fish.x = 100;
 
       assert.equal(true, collision(fish, bullet));
     });
 
-    xit('returns not true if (x coordinate + width) does not overlap', function() {
-      bullet.x = 493;
-      bullet.y = 100;
+    it('detects y collision: bullet y between fish y + height', function() {
+      fish.y = 500;
+      fish.height = 50;
+      bullet.y = 525;
+      bullet.x = 100;
+      fish.x = 100;
 
-      assert.notEqual(true, collision(fish, bullet));
+      assert.equal(true, collision(fish, bullet));
     });
 
-    it('returns not true if (y coordinate + height) does not overlap', function() {
-      bullet.x = 500;
-      bullet.y = 93;
+    it('detects y collision: very tall fish', function() {
+      fish.y = 0;
+      fish.height = 1000;
+      bullet.y = 500;
+      bullet.x = 100;
+      fish.x = 100;
+
+      assert.equal(true, collision(fish, bullet));
+    });
+
+    it('returns false if x coordinates do not overlap, y overlaps', function() {
+      fish.x = 0
+      bullet.x = 1000;
+      fish.width = 25; 
+      bullet.width = 25;
+      fish.y = 1000;
+      bullet.y = 1000;
 
       assert.notEqual(true, collision(fish, bullet));
     });
