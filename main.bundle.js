@@ -80,7 +80,6 @@
 	var canvasMotion = new CanvasMotion(canvasWidth, canvasHeight);
 	var winsCounter = 0;
 	var bubbaGump = new Audio('assets/bubba-gump.mp3');
-	var shrimpWaters = new Audio('assets/shrimp-waters.mp3');
 
 	var $ = __webpack_require__(10);
 	var p5Amplitude;
@@ -218,7 +217,6 @@
 	}
 
 	function playerLoses() {
-	  shrimpWaters.play();
 	  $gameStatus.html('Shrimpin\' Ain\'t Easy!');
 	  $continueOptions.text('Press Enter to play again!');
 	  clearScoreAndRound();
