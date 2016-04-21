@@ -27,10 +27,21 @@ The hurrican has passed, but *"people still need them shrimps for shrimp cocktai
 
 ## To Run Locally
 
+To clone the repo: 
+``` 
+git clone https://github.com/stevepentler/GameTime.git
+```
+
 To install the dependencies:
 
 ```
 npm install
+```
+
+To build the static files:
+
+```js
+npm run build
 ```
 
 To fire up a development server:
@@ -43,12 +54,6 @@ Once the server is running, you can visit:
 
 * `http://localhost:8080/webpack-dev-server/` to run your application.
 * `http://localhost:8080/webpack-dev-server/test.html` to run your test suite in the browser.
-
-To build the static files:
-
-```js
-npm run build
-```
 
 
 To run tests in Node:
