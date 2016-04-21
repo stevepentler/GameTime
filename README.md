@@ -1,5 +1,5 @@
 # Shrimpin' Ain't Easy
-[Live Site](http://stevepentler.github.io/GameTime/) || [GitHub](https://github.com/stevepentler/GameTime)
+### [Live Site](http://stevepentler.github.io/GameTime/) || [GitHub](https://github.com/stevepentler/GameTime)
 
 A Team Effort from:
 [Steve Pentler](https://github.com/stevepentler) & [David Stinnette](https://github.com/dastinnette)
