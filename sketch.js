@@ -1,6 +1,6 @@
-var amplitude, 
+var amplitude,
     level,
-    song, 
+    song,
     speed,
     amplitudeLevel,
     count = 0;
@@ -17,6 +17,7 @@ function setup() {
 
 function draw() {
   level = amplitude.getLevel();
+  console.log(level)
   var size = map(level, 0, 1, 1, 30);
   count++;
   if (count === 1) {
